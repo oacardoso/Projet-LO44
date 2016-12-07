@@ -23,6 +23,29 @@ Poly creerPolynome(){
   Poly P;
   return P=NULL;
 }
+Poly userPolynome(){
+  Monome M;
+  Poly P;
+  int a=1;
+  P=(Polynome *)malloc(sizeof(Polynome));
+  M=creerMonomev2();
+  P->valeur = M;
+  P->suivant=NULL;
+  while(a!=0){
+    ecrirePolynome(P);
+    printf("Voulez vous ajouter un Monome si oui taper 1 sinon 0\n" );
+    scanf("%d",&a);
+    if (a==1){
+      P=ajouterMonome(P,creerMonomev2());
+    }
+    else {
+      if (a!=1 && a!= 0){
+        printf("Séléction invalide\n");
+      }
+    }
+  }
+  return P;
+}
 int existe (Poly P,int e){
   Poly temp=P;
   int OK=0;
@@ -88,7 +111,7 @@ Poly supprimerMonome(Poly P,int e){
       return P;
     }
   }
-Monome mderiver(Monome M,int e){
+Monome mderiverI(Monome M,int e){
   int i;
   for (i = 0; i < e; i++) {
     if (M.degr==0){
@@ -101,17 +124,26 @@ Monome mderiver(Monome M,int e){
   }
   return M;
 }
+Monome mderiverR(Monome M,int e){
+  if (e==0)
+    return M;
+  else{
+    M.coef=(M.degr)*(M.coef);
+    M.degr=(M.degr)-1;
+    return mderiverR(M,e-1);
+  }
+}
 Poly pderiver(Poly P,int e){
   Poly P1 = P;
   if (P!=NULL){
     while (P1!=NULL) {
-      P1->valeur=mderiver(P1->valeur,e);
+      P1->valeur=mderiverI(P1->valeur,e);
       P1=P1->suivant;
     }
   }
   return P;
 }
-void ecrireMonome(Monome M){
+void ecrireMI(Monome M){
   if(M.degr==0){
     printf("%f \n",M.coef);
   }
@@ -127,14 +159,14 @@ void ecrirePolynome(Poly P){
   else{
     printf("Le polynome est :");
     while (temp->suivant!= NULL){
-      ecrireMonome(temp->valeur);
+      ecrireMI(temp->valeur);
       if (temp->suivant!=NULL) {
         printf("   +   ");
       temp=temp->suivant;
 
       }
     }
-    ecrireMonome(temp->valeur);
+    ecrireMI(temp->valeur);
   }
 }
 Poly additionner(Poly P1,Poly P2){

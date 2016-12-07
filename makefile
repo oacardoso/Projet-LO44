@@ -18,12 +18,13 @@ $(TARGET): $(FILES:.c=.o)
 
 # Regle de nettoyage (suppression des fichiers issus de la compilation : .o et executable)
 clean:
-	del *.o $(TARGET)
+	del *.exe $(TARGET)
 
-#Définient si un fichier doit être recompilé ou non
-depend:
-	makedepend --$(CFLAGS) --$(FILES)
-#Compilation et assemblage d'un fichier source .c en fichier objet .o
+# Regles de dépendance : définissent si un fichier doit être recompilé ou non
+depends:
+	make $(FILES)
+
+# Regle générique : Compilation & Assemblage d'un fichier source .c en fichier objet .o
 %.o: %.c
 	$(CXX) $(CFLAGS) $*.c
 

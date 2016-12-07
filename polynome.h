@@ -11,11 +11,13 @@ typedef Polynome *Poly;
 
 Monome creerMonomev2();
 Poly creerPolynome();
+Poly userPolynome();
 Poly ajouterMonome(Poly P,Monome M);
 Poly supprimerMonome(Poly P,int e);
-Monome mderiver(Monome M,int e);
+Monome mderiverI(Monome M,int e);
+Monome mderiverR(Monome M,int e);
 Poly pderiver(Poly P,int e);
-void ecrireMonome(Monome M);
+void ecrireMI(Monome M);
 void ecrirePolynome(Poly P);
 Poly additionner(Poly P1,Poly P2);
 Poly multiplier(Poly P1,Poly P2);
