@@ -5,17 +5,25 @@
 
 
 int main (){
-  Poly P,P2;
+  Poly P,P2,temp=NULL;
   Monome M;
   int option,o,e;
   P=userPolynome();
   P2=userPolynome();
   M=creerMonomev1(0,0);
   do{
+    if (temp != NULL){
+      printf("***************************************************\n");
+      printf("Ancien P = ");
+      ecrirePolynome(temp);
+    }
+    temp=NULL;
+    printf("***************************************************\n");
     printf("P = ");
     ecrirePolynome(P);
     printf("P2 = ");
     ecrirePolynome(P2);
+    printf("***************************************************\n");
     printf("Choisir une option \n");
     printf("1.creer un Monome \n");
     printf("2.ajouter un Monome a P \n");
@@ -70,10 +78,13 @@ int main (){
         P2=pderiver(P2,e);
         break;
       case 6:
-      P=additionner(P,P2);
+        temp=P;
+        P=additionner(P,P2);
+
         break;
       case 7:
-      P=multiplier(P,P2);
+      temp=P;
+        P=multiplier(P,P2);
         break;
     }
   }while (option!=0);
