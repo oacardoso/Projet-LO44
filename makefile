@@ -2,7 +2,6 @@
 
 # Compilateur
 CXX = gcc
-
 # Options de compilation pour gcc (génération du fichier objet .o)
 CFLAGS = -c -Wall -Werror -ansi -pedantic -shared -fpic
 

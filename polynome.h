@@ -23,3 +23,4 @@ Poly additionner(Poly P1,Poly P2);
 Poly multiplier(Poly P1,Poly P2);
 int existe (Poly P,int e);
 Monome creerMonomev1(float a,int b);
+void viderBuffer(void);

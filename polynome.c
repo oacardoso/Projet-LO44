@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #include "polynome.h"
 
 Monome creerMonomev1(float a,int b){
@@ -12,11 +13,11 @@ Monome creerMonomev2(){
   Monome M;
   float a;
   int b;
-  printf("Choisissez le coeffiscient puis le degré : \n");
-  scanf("%f",&a);
-  scanf("%d",&b);
+  printf("Choisissez le coeffiscient puis le degre : \n");
+  scanf("%f%d",&a,&b);
   M.coef=a;
   M.degr=b;
+  viderBuffer();
   return M;
 }
 Poly creerPolynome(){
@@ -44,6 +45,7 @@ Poly userPolynome(){
       }
     }
   }
+  viderBuffer();
   return P;
 }
 int existe (Poly P,int e){
@@ -61,6 +63,7 @@ int existe (Poly P,int e){
 }
 Poly ajouterMonome(Poly P,Monome M){
   Poly temp=P;
+
   if(existe(P,M.degr)==0){
     Poly temp2;
     temp2=(Polynome *)malloc(sizeof(Polynome));
@@ -84,33 +87,6 @@ Poly ajouterMonome(Poly P,Monome M){
    }
    return P;
  }
-Poly supprimerMonome(Poly P,int e){
-  Poly temp=P,temp2=P;
-  if(existe(P,e)==0){
-    printf("Le monome de degre : %d n'est pas présent dans le polynome \n",e);
-    return P;
-   }
-   else{
-     if(P->suivant == NULL){
-       return P=NULL;
-     }
-     else{
-       int ok=0;
-       while(temp!=NULL && ok!=1){
-         if (temp->valeur.degr==e ){
-           temp2->suivant=temp->suivant;
-           free(temp);
-           ok=1;
-         }
-         else{
-           temp2=temp;
-           temp=temp->suivant;
-          }
-        }
-      }
-      return P;
-    }
-  }
 Monome mderiverI(Monome M,int e){
   int i;
   for (i = 0; i < e; i++) {
@@ -208,3 +184,31 @@ Poly multiplier(Poly P1,Poly P2){
     return P3;
   }
 }
+void viderBuffer(void){
+  int c;
+  while((c=getchar()) != EOF && c != '\n');
+
+}
+Poly supprimerMonome(Poly P,int e){
+  Poly temp=P,temp2;
+  if (P==NULL)
+    return P;
+  else {
+    if (P->suivant == NULL && e==P->valeur.degr)
+    return P=NULL;
+    else{
+      while (temp!=NULL || temp->valeur.degr!=e) {
+        temp2=temp;
+        temp=temp->suivant;
+      }
+      if (temp->valeur.degr==e){
+        temp2->suivant=NULL;
+        free(temp);
+        }
+      else{
+        printf("Le Polynome na aucun monome de ce degré \n");
+      }
+      return P;
+      }
+    }
+  }
