@@ -17,7 +17,7 @@ $(TARGET): $(FILES:.c=.o)
 
 # Regle de nettoyage (suppression des fichiers issus de la compilation : .o et executable)
 clean:
-	del *.exe $(TARGET)
+	rm  *.o $(TARGET)
 
 # Regles de dépendance : définissent si un fichier doit être recompilé ou non
 depends:
@@ -26,7 +26,3 @@ depends:
 # Regle générique : Compilation & Assemblage d'un fichier source .c en fichier objet .o
 %.o: %.c
 	$(CXX) $(CFLAGS) $*.c
-
-# Commande d'execution propre au package sur atom
-run:
-	polynome_test $(ARGS)
