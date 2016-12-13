@@ -14,10 +14,11 @@ Monome creerMonomev2(){
   float a;
   int b;
   printf("Choisissez le coeffiscient puis le degre : \n");
-  scanf("%f%d",&a,&b);
+  scanf("%f",&a);
+  viderBuffer();
+  scanf("%d",&b);
   M.coef=a;
   M.degr=b;
-  viderBuffer();
   if (a==0){
     return creerMonomev1(0,0);
   }
@@ -38,18 +39,17 @@ Poly userPolynome(){
   P->suivant=NULL;
   while(a!=0){
     ecrirePolynome(P);
-    printf("Voulez vous ajouter un Monome si oui taper 1 sinon 0\n" );
+    printf("Voulez vous ajouter un Monome si oui taper 1 sinon 0 : \n" );
     scanf("%d",&a);
     if (a==1){
       P=ajouterMonome(P,creerMonomev2());
     }
     else {
       if (a!=1 && a!= 0){
-        printf("Séléction invalide\n");
+        printf("********* Selection invalide *********\n");
       }
     }
   }
-  viderBuffer();
   return P;
 }
 int existe (Poly P,int e){
@@ -91,6 +91,7 @@ Poly ajouterMonome(Poly P,Monome M){
        }
        temp->valeur.coef=(temp->valeur.coef)+(M.coef);
      }
+     viderBuffer();
      return P;
    }
  }
@@ -142,7 +143,7 @@ void ecrireMI(Monome M){
 void ecrirePolynome(Poly P){
   Poly temp=P;
   if(P==NULL){
-    printf("Le polynome est vide \n");
+    printf("******** Le polynome est vide ********* \n");
     }
   else{
     printf("Le polynome est :");
@@ -162,7 +163,7 @@ Poly additionner(Poly P1,Poly P2){
   P3=(Polynome *)malloc(sizeof(Polynome));
   P3=NULL;
   if (P1==NULL && P2==NULL)
-    printf("P1 ET P2 VIDES\n");
+    printf("******** P1 ET P2 VIDES *********\n");
   while(temp!=NULL){
     P3=ajouterMonome(P3,temp->valeur);
     temp=temp->suivant;
@@ -206,7 +207,7 @@ void viderBuffer(void){
 }
 Poly supprimerMonome(Poly P,int e){
   if (!existe(P,e)){
-    printf("NEXISTE PAS \n");
+    printf(" ************ NEXISTE PAS ************ \n");
     return P;
   }
   else{

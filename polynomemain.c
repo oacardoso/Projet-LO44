@@ -7,7 +7,9 @@ int main (){
   Poly P,P2,P3=NULL,temp=NULL;
   Monome M;
   int option,o,e;
+  printf("Selectionner le premier polynome :\n");
   P=userPolynome();
+  printf("Selectionner le second polynome :\n");
   P2=userPolynome();
   M=creerMonomev1(0,0);
   do{
@@ -39,18 +41,16 @@ int main (){
     printf("6.additionner les polynomes P et P2 (remplace P1 par P1+P2) \n" );
     printf("7.multiplier 2 polynome P et P2 (remplace P1 par P1*P2) \n" );
     printf("0. Pour quitter\n");
-    scanf("%d",&option );
+    scanf("%d",&option);
     viderBuffer();
     switch (option) {
       case 1:
         printf("***************************************************\n");
         M=creerMonomev2();
         ecrireMI(M);
-
         break;
       case 2:
         P=ajouterMonome(P,M);
-        printf("ici\n");
         break;
       case 22:
         P2=ajouterMonome(P2,M);
@@ -66,7 +66,6 @@ int main (){
         printf("La valeur du degré du Monome\n");
         scanf("%d",&o);
         P2=supprimerMonome(P2,o);
-
         break;
       case 4:
         printf("***************************************************\n");
