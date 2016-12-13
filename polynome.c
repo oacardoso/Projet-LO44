@@ -18,7 +18,11 @@ Monome creerMonomev2(){
   M.coef=a;
   M.degr=b;
   viderBuffer();
-  return M;
+  if (a==0){
+    return creerMonomev1(0,0);
+  }
+  else
+    return M;
 }
 Poly creerPolynome(){
   Poly P;
@@ -63,29 +67,32 @@ int existe (Poly P,int e){
 }
 Poly ajouterMonome(Poly P,Monome M){
   Poly temp=P;
-
-  if(existe(P,M.degr)==0){
-    Poly temp2;
-    temp2=(Polynome *)malloc(sizeof(Polynome));
-    temp2->valeur=M;
-    temp2->suivant = NULL;
-    if(P==NULL){
-      P=temp2;
-    }
-    else{
-      while(temp->suivant!=NULL){
-       temp=temp->suivant;
+  if (M.coef==0)
+    return P;
+  else{
+    if(existe(P,M.degr)==0){
+      Poly temp2;
+      temp2=(Polynome *)malloc(sizeof(Polynome));
+      temp2->valeur=M;
+      temp2->suivant = NULL;
+      if(P==NULL){
+        P=temp2;
       }
-      temp->suivant= temp2;
-    }
-   }
-   else{
-     while(temp->valeur.degr!=M.degr){
-       temp=temp->suivant;
+      else{
+        while(temp->suivant!=NULL){
+         temp=temp->suivant;
+        }
+        temp->suivant= temp2;
+      }
      }
-     temp->valeur.coef=(temp->valeur.coef)+(M.coef);
+     else{
+       while(temp->valeur.degr!=M.degr){
+         temp=temp->suivant;
+       }
+       temp->valeur.coef=(temp->valeur.coef)+(M.coef);
+     }
+     return P;
    }
-   return P;
  }
 Monome mderiverI(Monome M,int e){
   int i;
@@ -97,13 +104,18 @@ Monome mderiverI(Monome M,int e){
       M.coef=(M.degr)*(M.coef);
       M.degr=(M.degr)-1;
     }
+    if (M.coef==0)
+      return creerMonomev1(0,0);
   }
   return M;
 }
 Monome mderiverR(Monome M,int e){
-  if (e==0)
-    return M;
+  if (M.coef==0)
+    return creerMonomev1(0,0);
   else{
+    if (e==0) {
+      return M;
+    }
     M.coef=(M.degr)*(M.coef);
     M.degr=(M.degr)-1;
     return mderiverR(M,e-1);
@@ -148,6 +160,9 @@ void ecrirePolynome(Poly P){
 Poly additionner(Poly P1,Poly P2){
   Poly temp=P1,temp2=P2,P3;
   P3=(Polynome *)malloc(sizeof(Polynome));
+  P3=NULL;
+  if (P1==NULL && P2==NULL)
+    printf("P1 ET P2 VIDES\n");
   while(temp!=NULL){
     P3=ajouterMonome(P3,temp->valeur);
     temp=temp->suivant;
@@ -190,25 +205,34 @@ void viderBuffer(void){
 
 }
 Poly supprimerMonome(Poly P,int e){
-  Poly temp=P,temp2;
-  if (P==NULL)
+  if (!existe(P,e)){
+    printf("NEXISTE PAS \n");
     return P;
-  else {
-    if (P->suivant == NULL && e==P->valeur.degr)
-    return P=NULL;
-    else{
-      while (temp!=NULL || temp->valeur.degr!=e) {
+  }
+  else{
+    Poly temp=P,temp2=P;
+    int OK=0;
+    if (P->suivant==NULL) {
+      return P=NULL;
+    }
+    while(temp!=NULL && OK!=1){
+      if (temp->valeur.degr==e){
+        OK=1;
+      }
+      else{
         temp2=temp;
         temp=temp->suivant;
       }
-      if (temp->valeur.degr==e){
-        temp2->suivant=NULL;
-        free(temp);
-        }
-      else{
-        printf("Le Polynome na aucun monome de ce degré \n");
-      }
+    }
+    if (temp->suivant==NULL){
+      temp2->suivant=NULL;
+      temp=NULL;
       return P;
-      }
+    }
+    else{
+      temp=P->suivant;
+      free(P);
+      return temp;
     }
   }
+}

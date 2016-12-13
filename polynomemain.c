@@ -3,10 +3,8 @@
 #include <stdio.h>
 #include "polynome.h"
 
-
-
 int main (){
-  Poly P,P2,temp=NULL;
+  Poly P,P2,P3=NULL,temp=NULL;
   Monome M;
   int option,o,e;
   P=userPolynome();
@@ -19,6 +17,10 @@ int main (){
       ecrirePolynome(temp);
     }
     temp=NULL;
+    if (P3 != NULL){
+      ecrirePolynome(P3);
+    }
+    P3=NULL;
     printf("***************************************************\n");
     printf("P = ");
     ecrirePolynome(P);
@@ -56,43 +58,40 @@ int main (){
       case 3:
         printf("***************************************************\n");
         printf("La valeur du degré du Monome\n");
-        scanf("%d\n",&o);
+        scanf("%d",&o);
         P=supprimerMonome(P,o);
         break;
       case 33:
         printf("***************************************************\n");
         printf("La valeur du degré du Monome\n");
-        scanf("%d\n",&o);
+        scanf("%d",&o);
         P2=supprimerMonome(P2,o);
 
         break;
       case 4:
         printf("***************************************************\n");
         printf("Combien de fois souhaiter vous deriver le monome :\n");
-        scanf("%d\n",&e);
+        scanf("%d",&e);
         M=mderiverR(M,e);
         ecrireMI(M);
         break;
       case 5:
         printf("***************************************************\n");
         printf("Combien de fois souhaiter vous deriver P :\n");
-        scanf("%d\n",&e);
+        scanf("%d",&e);
         P=pderiver(P,e);
         break;
       case 55:
 
         printf("Combien de fois souhaiter vous deriver P2 :\n");
-        scanf("%d\n",&e);
+        scanf("%d",&e);
         P2=pderiver(P2,e);
         break;
       case 6:
-        temp=P;
-        P=additionner(P,P2);
-
+        P3=additionner(P,P2);
         break;
       case 7:
-        temp=P;
-        P=multiplier(P,P2);
+        P3=multiplier(P,P2);
         break;
     }
   }while (option!=0);
