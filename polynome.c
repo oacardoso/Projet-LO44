@@ -13,7 +13,7 @@ Monome creerMonomev2(){
   Monome M;
   float a;
   double b;
-  printf("Choisissez le coeffiscient puis le degre : \n");
+  printf("Choisissez le coefficient puis le degre : \n");
   a=lireLong();
   b=liredouble();
   M.coef=a;
@@ -38,7 +38,7 @@ Poly userPolynome(){
   P->suivant=NULL;
   while(a!=0){
     ecrirePolynome(P);
-    printf("Voulez vous ajouter un Monome si oui taper 1 sinon 0 : \n" );
+    printf("Voulez vous ajouter un monome si oui taper 1 sinon 0 : \n" );
     a=lireLong();
     if (a==1){
       P=ajouterMonome(P,creerMonomev2());

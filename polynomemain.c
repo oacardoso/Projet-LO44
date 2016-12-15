@@ -9,10 +9,10 @@ int main (){
   int option,o,e;
   printf("***********************************************************\n");
   printf("SI VOUS TAPEZ UNE LETTRE ELLE SERA CONSIDERER COMME NULLE\n");
-  printf("***********************************************************\n");
-  printf("Selectionner le premier polynome :\n");
+  printf("***********************************************************\n\n");
+  printf("Selectionner le premier polynome :\n\n");
   P=userPolynome();
-  printf("Selectionner le second polynome :\n");
+  printf("\nSelectionner le second polynome :\n\n");
   P2=userPolynome();
   M=creerMonomev1(0,0);
   do{
@@ -81,6 +81,9 @@ int main (){
         break;
       case 8:
         P3=multiplier(P,P2);
+        break;
+      case 9:
+        printf("Merci d'avoir utiliser mon programme\n");
         break;
       default:
         printf("Votre choix est invalide, veuillez selectionner une option valide \n" );
