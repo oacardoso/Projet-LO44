@@ -7,6 +7,9 @@ int main (){
   Poly P,P2,P3=NULL,temp=NULL;
   Monome M;
   int option,o,e;
+  printf("***********************************************************\n");
+  printf("SI VOUS TAPEZ UNE LETTRE ELLE SERA CONSIDERER COMME NULLE\n");
+  printf("***********************************************************\n");
   printf("Selectionner le premier polynome :\n");
   P=userPolynome();
   printf("Selectionner le second polynome :\n");
@@ -23,76 +26,74 @@ int main (){
       ecrirePolynome(P3);
     }
     P3=NULL;
-    printf("***************************************************\n");
+    printf("\n***************************************************\n\n");
     printf("P = ");
     ecrirePolynome(P);
     printf("P2 = ");
     ecrirePolynome(P2);
-    printf("***************************************************\n");
+    printf("\n***************************************************\n\n");
     printf("Choisir une option \n");
-    printf("1.creer un Monome \n");
-    printf("2.ajouter un Monome a P \n");
-    printf("22.ajouter un Monome a P2 \n");
+    printf("1.ajouter un Monome a P \n");
+    printf("2.ajouter un Monome a P2 \n");
     printf("3.supprimer Monome dans P \n" );
-    printf("33.supprimer Monome dans P2 \n" );
-    printf("4.deriver un monome\n" );
-    printf("5.deriver le polynome P \n" );
-    printf("55.deriver le polynome P2 \n" );
-    printf("6.additionner les polynomes P et P2 (remplace P1 par P1+P2) \n" );
-    printf("7.multiplier 2 polynome P et P2 (remplace P1 par P1*P2) \n" );
-    printf("0. Pour quitter\n");
-    scanf("%d",&option);
-    viderBuffer();
+    printf("4.supprimer Monome dans P2 \n" );
+    printf("5.deriver un monome\n" );
+    printf("6.deriver le polynome P \n" );
+    printf("7.deriver le polynome P2 \n" );
+    printf("8.additionner les polynomes P et P2 (Le polynome sera écrit au dessus des 2 autres) \n" );
+    printf("9.multiplier 2 polynome P et P2 (Le polynome sera écrit au dessus des 2 autres) \n" );
+    printf("10. Pour quitter\n");
+    option=lireLong();
+    printf("\n");
     switch (option) {
       case 1:
-        printf("***************************************************\n");
         M=creerMonomev2();
-        ecrireMI(M);
-        break;
-      case 2:
         P=ajouterMonome(P,M);
         break;
-      case 22:
+      case 2:
+        M=creerMonomev2();
         P2=ajouterMonome(P2,M);
         break;
       case 3:
         printf("***************************************************\n");
-        printf("La valeur du degré du Monome\n");
-        scanf("%d",&o);
+        printf("La valeur du degré du Monome :\n");
+        o=lireLong();
         P=supprimerMonome(P,o);
-        break;
-      case 33:
-        printf("***************************************************\n");
-        printf("La valeur du degré du Monome\n");
-        scanf("%d",&o);
-        P2=supprimerMonome(P2,o);
         break;
       case 4:
         printf("***************************************************\n");
-        printf("Combien de fois souhaiter vous deriver le monome :\n");
-        scanf("%d",&e);
-        M=mderiverR(M,e);
-        ecrireMI(M);
+        printf("La valeur du degré du Monome :\n");
+        o=lireLong();
+        P2=supprimerMonome(P2,o);
         break;
       case 5:
         printf("***************************************************\n");
-        printf("Combien de fois souhaiter vous deriver P :\n");
-        scanf("%d",&e);
-        P=pderiver(P,e);
-        break;
-      case 55:
-
-        printf("Combien de fois souhaiter vous deriver P2 :\n");
-        scanf("%d",&e);
-        P2=pderiver(P2,e);
+        printf("Combien de fois souhaitez vous deriver le monome :\n");
+        e=lireLong();
+        M=mderiverR(M,e);
+        ecrireMI(M);
         break;
       case 6:
-        P3=additionner(P,P2);
+        printf("***************************************************\n");
+        printf("Combien de fois souhaitez vous deriver P :\n");
+        e=lireLong();
+        P=pderiver(P,e);
         break;
       case 7:
+        printf("Combien de fois souhaitez vous deriver P2 :\n");
+        e=lireLong();
+        P2=pderiver(P2,e);
+        break;
+      case 8:
+        P3=additionner(P,P2);
+        break;
+      case 9:
         P3=multiplier(P,P2);
         break;
+      default:
+        printf("Votre choix est invalide, veuillez selectionner une option valide \n" );
+        break;
     }
-  }while (option!=0);
+  }while (option!=10);
   return 0;
 }

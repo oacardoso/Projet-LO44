@@ -1,3 +1,7 @@
+#ifndef POLYNOME_H
+#define POLYNOME_H
+
+
 typedef struct Monome {
   float coef;
   int degr;
@@ -23,4 +27,9 @@ Poly additionner(Poly P1,Poly P2);
 Poly multiplier(Poly P1,Poly P2);
 int existe (Poly P,int e);
 Monome creerMonomev1(float a,int b);
-void viderBuffer(void);
+void viderBuffer();
+int lire(char *chaine, int longueur);
+long lireLong();
+double liredouble();
+
+#endif

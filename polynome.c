@@ -12,11 +12,10 @@ Monome creerMonomev1(float a,int b){
 Monome creerMonomev2(){
   Monome M;
   float a;
-  int b;
+  double b;
   printf("Choisissez le coeffiscient puis le degre : \n");
-  scanf("%f",&a);
-  viderBuffer();
-  scanf("%d",&b);
+  a=lireLong();
+  b=liredouble();
   M.coef=a;
   M.degr=b;
   if (a==0){
@@ -40,7 +39,7 @@ Poly userPolynome(){
   while(a!=0){
     ecrirePolynome(P);
     printf("Voulez vous ajouter un Monome si oui taper 1 sinon 0 : \n" );
-    scanf("%d",&a);
+    a=lireLong();
     if (a==1){
       P=ajouterMonome(P,creerMonomev2());
     }
@@ -91,7 +90,6 @@ Poly ajouterMonome(Poly P,Monome M){
        }
        temp->valeur.coef=(temp->valeur.coef)+(M.coef);
      }
-     viderBuffer();
      return P;
    }
  }
@@ -200,14 +198,50 @@ Poly multiplier(Poly P1,Poly P2){
     return P3;
   }
 }
-void viderBuffer(void){
-  int c;
-  while((c=getchar()) != EOF && c != '\n');
-
+void viderBuffer(){
+    int c = 0;
+    while (c != '\n' && c != EOF){
+        c = getchar();
+    }
 }
+int lire(char *chaine, int longueur){
+    char *positionEntree = NULL;
+
+    if (fgets(chaine, longueur, stdin) != NULL)
+    {
+        positionEntree = strchr(chaine, '\n');
+        if (positionEntree != NULL)
+        {
+            *positionEntree = '\0';
+        }
+        else
+        {
+            viderBuffer();
+        }
+        return 1;
+    }
+    else{
+        viderBuffer();
+        return 0;
+    }
+}
+long lireLong(){
+    char nombreTexte[100] = {0};
+    if (lire(nombreTexte, 100))
+        return strtol(nombreTexte, NULL, 10);
+    else
+        return 0;
+  }
+double liredouble(){
+    char nombreTexte[100] = {0};
+    if (lire(nombreTexte, 100))
+        return strtod(nombreTexte, NULL);
+    else
+        return 0;
+    }
 Poly supprimerMonome(Poly P,int e){
   if (!existe(P,e)){
-    printf(" ************ NEXISTE PAS ************ \n");
+    printf(" ***********************   NEXISTE PAS   ***************** \n");
     return P;
   }
   else{
