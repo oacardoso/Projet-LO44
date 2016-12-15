@@ -37,12 +37,11 @@ int main (){
     printf("2.ajouter un Monome a P2 \n");
     printf("3.supprimer Monome dans P \n" );
     printf("4.supprimer Monome dans P2 \n" );
-    printf("5.deriver un monome\n" );
-    printf("6.deriver le polynome P \n" );
-    printf("7.deriver le polynome P2 \n" );
-    printf("8.additionner les polynomes P et P2 (Le polynome sera écrit au dessus des 2 autres) \n" );
-    printf("9.multiplier 2 polynome P et P2 (Le polynome sera écrit au dessus des 2 autres) \n" );
-    printf("10. Pour quitter\n");
+    printf("5.deriver le polynome P \n" );
+    printf("6.deriver le polynome P2 \n" );
+    printf("7.additionner les polynomes P et P2 (Le polynome sera écrit au dessus des 2 autres) \n" );
+    printf("8.multiplier 2 polynome P et P2 (Le polynome sera écrit au dessus des 2 autres) \n" );
+    printf("9. Pour quitter\n");
     option=lireLong();
     printf("\n");
     switch (option) {
@@ -68,32 +67,25 @@ int main (){
         break;
       case 5:
         printf("***************************************************\n");
-        printf("Combien de fois souhaitez vous deriver le monome :\n");
-        e=lireLong();
-        M=mderiverR(M,e);
-        ecrireMI(M);
-        break;
-      case 6:
-        printf("***************************************************\n");
         printf("Combien de fois souhaitez vous deriver P :\n");
         e=lireLong();
         P=pderiver(P,e);
         break;
-      case 7:
+      case 6:
         printf("Combien de fois souhaitez vous deriver P2 :\n");
         e=lireLong();
         P2=pderiver(P2,e);
         break;
-      case 8:
+      case 7:
         P3=additionner(P,P2);
         break;
-      case 9:
+      case 8:
         P3=multiplier(P,P2);
         break;
       default:
         printf("Votre choix est invalide, veuillez selectionner une option valide \n" );
         break;
     }
-  }while (option!=10);
+  }while (option!=9);
   return 0;
 }
