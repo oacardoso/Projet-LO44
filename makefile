@@ -17,7 +17,7 @@ $(TARGET): $(FILES:.c=.o)
 
 # Regle de nettoyage (suppression des fichiers issus de la compilation : .o et executable)
 clean:
-	rm  *.o $(TARGET)
+	rm *.o $(TARGET)
 
 # Regles de dépendance : définissent si un fichier doit être recompilé ou non
 depends:
