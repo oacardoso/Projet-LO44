@@ -4,7 +4,7 @@
 #include "polynome.h"
 
 int main (){
-  Poly P,P2,P3=NULL,temp=NULL;
+  Poly P,P2,P3=NULL;
   Monome M;
   int option,o,e;
   printf("***********************************************************\n");
@@ -16,19 +16,13 @@ int main (){
   P2=userPolynome();
   M=creerMonomev1(0,0);
   do{
-    if (temp != NULL){
-      printf("***************************************************\n");
-      printf("Ancien P = ");
-      ecrirePolynome(temp);
-    }
-    temp=NULL;
     if (P3 != NULL){
       ecrirePolynome(P3);
     }
     P3=NULL;
     printf("\n***************************************************\n\n");
     printf("P = ");
-    ecrirePolynome(P);
+    ecrirePolynomeRec(P);
     printf("P2 = ");
     ecrirePolynome(P2);
     printf("\n***************************************************\n\n");

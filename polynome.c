@@ -3,6 +3,17 @@
 #include <string.h>
 #include "polynome.h"
 
+void ecrirePolynomeRec(Poly P){
+  if(P!=NULL){
+      ecrireMI(P->valeur);
+      if (P->suivant!=NULL) {
+        printf("   +   ");
+        ecrirePolynomeRec(P->suivant);
+    }
+  }
+  if (P==NULL)
+    printf("Le Polynome est NULL\n");
+}
 Monome creerMonomev1(float a,int b){
   Monome M;
   M.coef=a;

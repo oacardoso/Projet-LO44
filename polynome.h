@@ -12,7 +12,7 @@ typedef struct elt {
   struct elt * suivant;
 } Polynome;
 typedef Polynome *Poly;
-
+void ecrirePolynomeRec(Poly P);
 Monome creerMonomev2();
 Poly creerPolynome();
 Poly userPolynome();
