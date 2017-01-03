@@ -22,11 +22,11 @@ Monome creerMonomev1(double a,int b){
 }
 Monome creerMonomev2(){
   Monome M;
-  float a;
-  double b;
+  double a;
+  int b;
   printf("Choisissez le coefficient puis le degre : \n");
-  a=lireLong();
-  b=liredouble();
+  a=liredouble();
+  b=lireLong();
   M.coef=a;
   M.degr=b;
   if (a==0){
@@ -144,12 +144,11 @@ Poly pderiver(Poly P,int e){
 
 void ecrireMI(Monome M){
   if(M.degr==0){
-    printf("%lf \n",M.coef);
+    printf("%f \n",M.coef);
 
   }
   else{
-    printf("%.lf X^ %d \n",M.coef,M.degr);
-    fprintf(stdout,"%lf X^ %d \n",M.coef,M.degr);
+    printf("%f X^ %d \n",M.coef,M.degr);
   }
 }
 
@@ -237,8 +236,8 @@ int lire(char *chaine, int longueur){
 }
 long lireLong(){
     char nombreTexte[100] = {0};
-    if (lire(nombreTexte, 100))
-        return strtol(nombreTexte, NULL, 10);
+    if (lire(nombreTexte, 100)){
+        return strtol(nombreTexte, NULL, 10);}
     else
         return 0;
   }
