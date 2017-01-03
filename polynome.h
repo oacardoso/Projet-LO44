@@ -3,7 +3,7 @@
 
 
 typedef struct Monome {
-  float coef;
+  double coef;
   int degr;
 } Monome;
 
@@ -12,6 +12,7 @@ typedef struct elt {
   struct elt * suivant;
 } Polynome;
 typedef Polynome *Poly;
+
 void ecrirePolynomeRec(Poly P);
 Monome creerMonomev2();
 Poly creerPolynome();
@@ -26,7 +27,7 @@ void ecrirePolynome(Poly P);
 Poly additionner(Poly P1,Poly P2);
 Poly multiplier(Poly P1,Poly P2);
 int existe (Poly P,int e);
-Monome creerMonomev1(float a,int b);
+Monome creerMonomev1(double a,int b);
 void viderBuffer();
 int lire(char *chaine, int longueur);
 long lireLong();

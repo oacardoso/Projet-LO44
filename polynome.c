@@ -14,7 +14,7 @@ void ecrirePolynomeRec(Poly P){
   if (P==NULL)
     printf("Le Polynome est NULL\n");
 }
-Monome creerMonomev1(float a,int b){
+Monome creerMonomev1(double a,int b){
   Monome M;
   M.coef=a;
   M.degr=b;
@@ -141,14 +141,18 @@ Poly pderiver(Poly P,int e){
   }
   return P;
 }
+
 void ecrireMI(Monome M){
   if(M.degr==0){
-    printf("%f \n",M.coef);
+    printf("%lf \n",M.coef);
+
   }
   else{
-    printf("%f X^ %d \n",M.coef,M.degr);
+    printf("%.lf X^ %d \n",M.coef,M.degr);
+    fprintf(stdout,"%lf X^ %d \n",M.coef,M.degr);
   }
 }
+
 void ecrirePolynome(Poly P){
   Poly temp=P;
   if(P==NULL){
@@ -216,16 +220,12 @@ void viderBuffer(){
 }
 int lire(char *chaine, int longueur){
     char *positionEntree = NULL;
-
-    if (fgets(chaine, longueur, stdin) != NULL)
-    {
+    if (fgets(chaine, longueur, stdin) != NULL){
         positionEntree = strchr(chaine, '\n');
-        if (positionEntree != NULL)
-        {
+        if (positionEntree != NULL){
             *positionEntree = '\0';
         }
-        else
-        {
+        else{
             viderBuffer();
         }
         return 1;
