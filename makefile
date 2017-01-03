@@ -12,8 +12,8 @@ FILES = polynomemain.c polynome.c
 TARGET = polynome_test
 
 # Regle par défaut : Linkage
-$(TARGET): $(FILES:.c=.o)
-	$(CXX) -o $@ $(FILES:.c=.o)
+$(TARGET): $(FILES:.c=.so)
+	$(CXX) -o $@ $(FILES:.c=.so)
 
 # Regle de nettoyage (suppression des fichiers issus de la compilation : .o et executable)
 clean:
