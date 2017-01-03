@@ -155,7 +155,6 @@ void ecrirePolynome(Poly P){
     printf("******** Le polynome est vide ********* \n");
     }
   else{
-    printf("Le polynome est :");
     while (temp->suivant!= NULL){
       ecrireMI(temp->valeur);
       if (temp->suivant!=NULL) {
