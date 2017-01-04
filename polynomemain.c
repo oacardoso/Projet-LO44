@@ -17,6 +17,7 @@ int main (){
   M=creerMonomev1(0,0);
   do{
     if (P3 != NULL){
+      printf("P3 = ");
       ecrirePolynome(P3);
     }
     P3=NULL;
@@ -33,9 +34,9 @@ int main (){
     printf("4.supprimer Monome dans P2 \n" );
     printf("5.deriver le polynome P \n" );
     printf("6.deriver le polynome P2 \n" );
-    printf("7.additionner les polynomes P et P2 (Le polynome sera écrit au dessus des 2 autres) \n" );
-    printf("8.multiplier 2 polynome P et P2 (Le polynome sera écrit au dessus des 2 autres) \n" );
-    printf("9. Pour quitter\n");
+    printf("7.additionner les polynomes P et P2 (Le polynome sera ecrit au dessus des 2 autres) \n" );
+    printf("8.multiplier 2 polynome P et P2 (Le polynome sera ecrit au dessus des 2 autres) \n" );
+    printf("9.Pour quitter\n");
     option=lireLong();
     printf("\n");
     switch (option) {
